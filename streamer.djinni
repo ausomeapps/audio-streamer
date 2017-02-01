@@ -1,0 +1,52 @@
+# The audio streamer proxy class provides an abstract interface for which
+# we can implement a platform specific player for iOS and Android. On iOS
+# this will be achieved by wrapping the AVPlayer class from AVFoundation,
+# while on Android this will be achieved by wrapping the MediaPlayer class.
+audio_streamer_proxy = interface +j +o {
+
+    # Provides the currently loaded URL song reference
+    url(): string;
+
+    # Sets the current URL song reference (will stop the player from playing
+    # if it is currently playing)
+    setUrl(url: string);
+
+    # Returns a boolean indicating whether or not the player is currently
+    # playing some audio
+    isPlaying(): bool;
+
+    # Tells the player to start playing audio.
+    play();
+
+    # Tells the player to pause any audio it may be playing.
+    pause();
+
+}
+
+# The audio streamer class serves as a concrete class that wraps our proxy
+# implementation and provides our client a singleton instance to reuse.
+audio_streamer = interface +c {
+
+    # A singleton instance of the audio streamer (in most applications you will
+    # only be dealing with a single streamer reference since you don't want
+    # multiple players playing at once)
+    static sharedInstance(proxy: audio_streamer_proxy): audio_streamer;
+
+    # Provides the currently loaded URL song reference
+    url(): string;
+
+    # Sets the current URL song reference (will stop the player from playing
+    # if it is currently playing)
+    setUrl(url: string);
+
+    # Returns a boolean indicating whether or not the player is currently
+    # playing some audio
+    isPlaying(): bool;
+
+    # Tells the player to start playing audio.
+    play();
+
+    # Tells the player to pause any audio it may be playing.
+    pause();
+
+}
