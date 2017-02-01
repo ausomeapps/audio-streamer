@@ -30,7 +30,11 @@ audio_streamer = interface +c {
     # A singleton instance of the audio streamer (in most applications you will
     # only be dealing with a single streamer reference since you don't want
     # multiple players playing at once)
-    static sharedInstance(proxy: audio_streamer_proxy): audio_streamer;
+    static sharedInstance(): audio_streamer;
+
+    # Sets an instance of the proxy class that is used to implement the
+    # platform specific proxy
+    setProxy(proxy: audio_streamer_proxy);
 
     # Provides the currently loaded URL song reference
     url(): string;
