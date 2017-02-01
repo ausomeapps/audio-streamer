@@ -1,0 +1,3 @@
+[submodule "deps/djinni"]
+	path = deps/djinni
+	url = https://github.com/mobilecpp/djinni.git

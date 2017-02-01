@@ -14,7 +14,7 @@ $DJINNI/src/run \
    --ident-java-field mFooBar \
     \
     --cpp-out $cpp_out \
-    --cpp-namespace skycatch \
+    --cpp-namespace mobilecpp \
     --ident-cpp-enum-type foo_bar \
     \
     --jni-out $jni_out \
