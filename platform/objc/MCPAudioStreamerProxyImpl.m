@@ -41,6 +41,7 @@
 //------------------------------------------------------------------------------
 
 - (void)setUrl:(NSString *)url {
+    NSLog(@"Setting url: %@", url);
     AVPlayerItem *item = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
     [self.player replaceCurrentItemWithPlayerItem:item];
 }
@@ -54,6 +55,7 @@
 //------------------------------------------------------------------------------
 
 - (void)play {
+    NSLog(@"Player [%@]: is playing: %@", self.player, [self url]);
     [self.player play];
 }
 

@@ -19,6 +19,7 @@ namespace mobilecpp {
          * multiple players playing at once)
          */
         static std::shared_ptr<AudioStreamer> sharedInstance();
+        static std::shared_ptr<AudioStreamerImpl> internalSharedInstance();
         
         /**
          * Sets an instance of the proxy class that is used to implement the

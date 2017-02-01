@@ -2,17 +2,22 @@
 #include "audio_streamer_proxy.hpp"
 
 namespace mobilecpp {
-
+    
+    std::shared_ptr<AudioStreamerImpl> AudioStreamerImpl::mSharedInstance = nullptr;
+    
     AudioStreamerImpl::AudioStreamerImpl() {
         mProxy = nullptr;
-        mSharedInstance = nullptr;
     }
     
     AudioStreamerImpl::~AudioStreamerImpl() {
         // TBD
     }
     
-    std::shared_ptr<AudioStreamer> AudioStreamerImpl::sharedInstance() {
+    std::shared_ptr<AudioStreamer> AudioStreamer::sharedInstance() {
+        return AudioStreamerImpl::internalSharedInstance();
+    }
+    
+    std::shared_ptr<AudioStreamerImpl> AudioStreamerImpl::internalSharedInstance() {
         if (mSharedInstance == nullptr) {
             mSharedInstance = std::make_shared<AudioStreamerImpl>();
         }
