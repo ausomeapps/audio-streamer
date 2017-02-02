@@ -1,5 +1,5 @@
+#import "MCPAudioStreamerProxy.h"
 #import <AVFoundation/AVFoundation.h>
-#import <MCPAudioStreamerProxy.h>
 
 @interface MCPAudioStreamerProxyImpl : NSObject <MCPAudioStreamerProxy>
 
