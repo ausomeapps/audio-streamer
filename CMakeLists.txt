@@ -26,7 +26,7 @@ file(GLOB_RECURSE CPP_GENERATED_SRC
     ${GENERATED_SRC_CPP_DIR}/*.h
 )
 
-add_library(AudioStreamer STATIC
+add_library(AudioStreamer SHARED
     ${CPP_INCLUDES}
     ${CPP_SRC}
     ${CPP_GENERATED_SRC}
@@ -65,4 +65,7 @@ if(APPLE)
         deps/djinni/support-lib/objc
     )
     target_compile_options(AudioStreamer PUBLIC "-fobjc-arc")
+    set_target_properties(AudioStreamer PROPERTIES
+      FRAMEWORK TRUE
+    )
 endif(APPLE)
