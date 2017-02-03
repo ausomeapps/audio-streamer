@@ -1,7 +1,7 @@
 #!/bin/bash
 
 base_dir=$(cd "`dirname "0"`" && pwd)/../
-in="$base_dir/streamer.djinni"
+in="$base_dir/djinni/audio-streamer.djinni"
 cpp_out="$base_dir/generated-src/cpp"
 jni_out="$base_dir/generated-src/jni"
 objc_out="$base_dir/generated-src/objc"
