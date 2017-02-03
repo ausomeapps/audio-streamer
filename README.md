@@ -27,9 +27,11 @@ cd scripts && ./build_ios.sh
 ```
 
 #### Requirements
+- CMake 3.1 (minimum)
 - Xcode 8
 - iOS 10.2
 - macOS 10.12
+- A valid "iPhone Developer" code signing identity
 
 Once successfully built the universal `AudioStreamer.framework` and `libdjinni.a` library will be available in the `libs` folder under the target device (iOS or macos). From this point the two can simply be dragged and dropped into a project or added by reference.
 
