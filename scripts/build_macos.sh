@@ -46,11 +46,11 @@ echo -e "--------------------------------------------"
 echo -e "-- Creating djinni.framework macOS binary --"
 echo -e "--------------------------------------------\n"
 cd deps/djinni
-cp -R Release/djinni.framework $lib_dir
-echo -e "Success: \n" $lib_dir/djinni.framework "\n"
+cp -R Release/libdjinni.a $lib_dir
+echo -e "Success: \n" $lib_dir/libdjinni.a "\n"
 
-echo -e "--------------------------------------------"
-echo -e "-- Validating djinni.framework FAT binary --"
-echo -e "--------------------------------------------\n"
-lipo -info $lib_dir/djinni.framework/djinni
+echo -e "----------------------------------------"
+echo -e "-- Validating djinni.framework binary --"
+echo -e "----------------------------------------\n"
+lipo -info $lib_dir/libdjinni.a
 echo -e ""
