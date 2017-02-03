@@ -1,13 +1,6 @@
 .DS_Store
-build_ios/
-build_osx/
-tests/android/SimpleApp/app/libs/
-tests/android/SimpleApp/app/obj/
 generated-src/
-GypAndroid.mk
-libskycatch.target.mk
-libskycatch_jni.target.mk
-jniLibs/
+lib/
 
 #
 # Android

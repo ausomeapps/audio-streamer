@@ -1,3 +1,6 @@
 [submodule "deps/djinni"]
 	path = deps/djinni
 	url = https://github.com/mobilecpp/djinni.git
+[submodule "deps/polly"]
+	path = deps/polly
+	url = https://github.com/mobilecpp/polly.git
