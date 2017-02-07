@@ -43,7 +43,9 @@ file(GLOB_RECURSE CPP_GENERATED_SRC
 
 # Append C++ sources to lib sources
 list(APPEND SRC_FILES
+    ${CPP_HEADERS}
     ${CPP_SRC}
+    ${CPP_GENERATED_HEADERS}
     ${CPP_GENERATED_SRC}
 )
 
@@ -68,7 +70,9 @@ if(APPLE)
         ${GENERATED_SRC_OBJC_DIR}/*.m
     )
     list(APPEND SRC_FILES
+        ${OBJ_C_HEADERS}
         ${OBJ_C_SRC}
+        ${OBJ_C_GENERATED_HEADERS}
         ${OBJ_C_GENERATED_SRC}
     )
     source_group("src\\objc" FILES ${OBJ_C_SRC})

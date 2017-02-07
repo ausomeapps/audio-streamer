@@ -42,15 +42,15 @@ echo -e "---------------------------------------------------\n"
 lipo -info $lib_dir/AudioStreamer.framework/AudioStreamer
 echo -e ""
 
-echo -e "----------------------------------------"
-echo -e "-- Creating djinni.dylib macOS binary --"
-echo -e "----------------------------------------n"
+echo -e "--------------------------------------------"
+echo -e "-- Creating djinni.framework macOS binary --"
+echo -e "--------------------------------------------/n"
 cd deps/djinni
-cp -R Release/libdjinni.dylib $lib_dir
-echo -e "Success: \n" $lib_dir/libdjinni.dylib "\n"
+cp -R Release/djinni.framework $lib_dir
+echo -e "Success: \n" $lib_dir/djinni.framework "\n"
 
-echo -e "------------------------------------"
-echo -e "-- Validating djinni.dylib binary --"
-echo -e "------------------------------------\n"
-lipo -info $lib_dir/libdjinni.dylib
+echo -e "----------------------------------------------"
+echo -e "-- Validating djinni.framework macOS binary --"
+echo -e "----------------------------------------------\n"
+lipo -info $lib_dir/djinni.framework/djinni
 echo -e ""
