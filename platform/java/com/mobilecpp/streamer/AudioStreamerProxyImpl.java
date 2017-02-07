@@ -23,6 +23,8 @@ public class AudioStreamerProxyImpl extends AudioStreamerProxy {
     public AudioStreamerProxyImpl(Context context) {
         mContext = context;
 
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         Log.d(TAG, "Created internal media player!");
     }
 
@@ -38,9 +40,17 @@ public class AudioStreamerProxyImpl extends AudioStreamerProxy {
 
             Log.d(TAG, String.format(Locale.getDefault(), "Setting url: %s", url));
 
+            //
+            // Pause the media player if it's currently playing some audio
+            //
+            if (isPlaying()) {
+                mMediaPlayer.stop();
+            }
+
+            //
+            // Try loading in the new url as a new data source for the media player
+            //
             try {
-                mMediaPlayer = new MediaPlayer();
-                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mMediaPlayer.setDataSource(mContext, Uri.parse(url));
                 mMediaPlayer.prepare();
                 Log.d(TAG, "Prepared!");
