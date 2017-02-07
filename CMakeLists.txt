@@ -53,9 +53,6 @@ source_group("src\\cpp" FILES ${CPP_SRC})
 source_group("generated-src\\cpp" FILES ${CPP_GENERATED_SRC})
 
 if(APPLE)
-    target_link_libraries(AudioStreamer
-        "-framework AVFoundation"
-    )
     file(GLOB_RECURSE OBJ_C_HEADERS
         ${OBJ_C_DIR}/*.h
     )
@@ -81,23 +78,6 @@ if(APPLE)
         ${OBJ_C_DIR}
         ${DJINNI_SUPPORT_OBJ_C_DIR}
     )
-    target_compile_options(AudioStreamer PUBLIC "-fobjc-arc")
-    set(FRAMEWORK_HEADERS
-        ${CPP_HEADERS}
-        ${CPP_GENERATED_HEADERS}
-        ${OBJ_C_HEADERS}
-        ${OBJ_C_GENERATED_HEADERS}
-    )
-    set_target_properties(AudioStreamer PROPERTIES
-        CXX_STANDARD 11
-		CXX_STANDARD_REQUIRED true
-		CXX_EXTENSIONS false
-        FRAMEWORK TRUE
-        PUBLIC_HEADER "${FRAMEWORK_HEADERS}"
-        XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH NO
-        MACOSX_FRAMEWORK_BUNDLE_VERSION "1.0.0"
-        MACOSX_FRAMEWORK_IDENTIFIER "com.mobilecpp.audiostreamer"
-    )
 endif(APPLE)
 
 if (ANDROID)
@@ -121,3 +101,26 @@ target_link_libraries(AudioStreamer djinni)
 
 # Add included directories
 include_directories(${INCLUDE_DIRS})
+
+# Do extra stuff for apple framework
+if (APPLE)
+    set(FRAMEWORK_HEADERS
+        ${CPP_HEADERS}
+        ${CPP_GENERATED_HEADERS}
+        ${OBJ_C_HEADERS}
+        ${OBJ_C_GENERATED_HEADERS}
+    )
+    message("FRAMEWORK HEADERS: " ${FRAMEWORK_HEADERS})
+    target_link_libraries(AudioStreamer "-framework AVFoundation")
+    set_target_properties(AudioStreamer PROPERTIES
+        CXX_STANDARD 11
+		CXX_STANDARD_REQUIRED true
+		CXX_EXTENSIONS false
+        FRAMEWORK TRUE
+        PUBLIC_HEADER "${FRAMEWORK_HEADERS}"
+        XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH NO
+        MACOSX_FRAMEWORK_BUNDLE_VERSION "1.0.0"
+        MACOSX_FRAMEWORK_IDENTIFIER "com.mobilecpp.audiostreamer"
+    )
+    target_compile_options(AudioStreamer PUBLIC "-fobjc-arc")
+endif(APPLE)

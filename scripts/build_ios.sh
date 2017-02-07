@@ -46,15 +46,15 @@ lipo -info $lib_dir/AudioStreamer.framework/AudioStreamer
 echo -e ""
 
 echo -e "------------------------------------------"
-echo -e "-- Creating libdjinni.a FAT binary --"
+echo -e "-- Creating libdjinni.dylib FAT binary --"
 echo -e "------------------------------------------\n"
 cd deps/djinni
-cp -R Release-iphoneos/libdjinni.a $lib_dir
-lipo -create -output $lib_dir/libdjinni.a Release-iphoneos/libdjinni.a Release-iphonesimulator/libdjinni.a
-echo -e "Success: \n" $lib_dir/djinni.framework "\n"
+cp -R Release-iphoneos/libdjinni.dylib $lib_dir
+lipo -create -output $lib_dir/libdjinni.dylib Release-iphoneos/libdjinni.dylib Release-iphonesimulator/libdjinni.dylib
+echo -e "Success: \n" $lib_dir/djinni.dylib "\n"
 
 echo -e "--------------------------------------------"
-echo -e "-- Validating libdjinni.a FAT binary --"
+echo -e "-- Validating libdjinni.dylib FAT binary --"
 echo -e "--------------------------------------------\n"
-lipo -info $lib_dir/libdjinni.a
+lipo -info $lib_dir/libdjinni.dylib
 echo -e ""
