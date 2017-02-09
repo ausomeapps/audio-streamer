@@ -7,10 +7,6 @@ std::shared_ptr<AudioStreamerImpl> AudioStreamerImpl::mSharedInstance = nullptr;
 
 AudioStreamerImpl::AudioStreamerImpl() { mProxy = nullptr; }
 
-AudioStreamerImpl::~AudioStreamerImpl() {
-  // TBD
-}
-
 std::shared_ptr<AudioStreamer> AudioStreamer::sharedInstance() {
   return AudioStreamerImpl::internalSharedInstance();
 }
@@ -20,6 +16,10 @@ std::shared_ptr<AudioStreamerImpl> AudioStreamerImpl::internalSharedInstance() {
     mSharedInstance = std::make_shared<AudioStreamerImpl>();
   }
   return mSharedInstance;
+}
+
+std::shared_ptr<AudioStreamerProxy> AudioStreamerImpl::getProxy() {
+  return mProxy;
 }
 
 void AudioStreamerImpl::setProxy(
