@@ -10,51 +10,65 @@
 #import <AudioStreamer/MCPAudioStreamer.h>
 #import <AudioStreamer/MCPAudioStreamerProxyImpl.h>
 
-@interface ViewController ()
+//------------------------------------------------------------------------------
+#pragma mark - Constants
+//------------------------------------------------------------------------------
 
-@end
+NSString * const STREAM_URL = @"http://a935.phobos.apple.com/us/r30/Music/53/6f/d8/mzm.eslehvlz.aac.p.m4a";
+
+//------------------------------------------------------------------------------
+#pragma mark - ViewController (Implementation)
+//------------------------------------------------------------------------------
 
 @implementation ViewController
 
+//------------------------------------------------------------------------------
+#pragma mark - View Lifecycle
+//------------------------------------------------------------------------------
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
     
-    
-    // Setup the AVAudioSession. EZMicrophone will not work properly on iOS
-    // if you don't do this!
+    // Setup the AVAudioSession for playback
     //
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error;
     [session setCategory:AVAudioSessionCategoryPlayback error:&error];
-    if (error)
-    {
-        NSLog(@"Error setting up audio session category: %@", error.localizedDescription);
+    if (error) {
+        NSLog(@"Error setting up audio session category: %@",
+              error.localizedDescription);
     }
     [session setActive:YES error:&error];
-    if (error)
-    {
-        NSLog(@"Error setting up audio session active: %@", error.localizedDescription);
+    if (error) {
+        NSLog(@"Error setting up audio session active: %@",
+              error.localizedDescription);
     }
     
-    __block NSString *url = @"http://a165.phobos.apple.com/us/r30/Music3/v4/1b/a1/00/1ba10045-5bfe-1eda-361f-2f0752a6b943/mzaf_1919196824342540066.plus.aac.p.m4a";
+    //
+    // Setup the streamer with the proxy implementation and set the URL to
+    // the STREAM_URL we defined above
+    //
+    MCPAudioStreamer *sharedStreamer = [MCPAudioStreamer sharedInstance];
     MCPAudioStreamerProxyImpl *proxy = [MCPAudioStreamerProxyImpl proxy];
-    MCPAudioStreamer.sharedInstance.proxy = proxy;
-    MCPAudioStreamer.sharedInstance.url = url;
-    [MCPAudioStreamer.sharedInstance play];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        url = @"http://a890.phobos.apple.com/us/r1000/086/Music/v4/9d/df/d9/9ddfd90a-34d7-989f-422e-753cc53ca9fc/mzaf_7579162302371443805.aac.m4a";
-        [MCPAudioStreamer.sharedInstance pause];
-        MCPAudioStreamer.sharedInstance.url = url;
-        [MCPAudioStreamer.sharedInstance play];
-    });
+    [sharedStreamer setProxy:proxy];
+    [sharedStreamer setUrl:STREAM_URL];
 }
 
+//------------------------------------------------------------------------------
+#pragma mark - Instance Methods
+//------------------------------------------------------------------------------
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)play:(id)sender {
+    MCPAudioStreamer *sharedStreamer = [MCPAudioStreamer sharedInstance];
+    if ([sharedStreamer isPlaying]) {
+        [sharedStreamer pause];
+        [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+    }
+    else {
+        [sharedStreamer play];
+        [self.playButton setTitle:@"Pause" forState:UIControlStateNormal];
+    }
 }
-
 
 @end
