@@ -9,7 +9,13 @@ In the [Mobile C++ video series](https://www.syedharisali.com/mobilecpp) this se
 To build the AudioStreamer library for iOS and Android follow the instructions below to generate the appropriate `AudioStreamer.framework` (iOS) or proper Android Studio CMake integration (Android). The `CMakeLists.txt` file should take care of generating the libraries and handling all internal linking of the sub-dependencies (such as djinni)
 
 ### Requirements
+- A Mac computer (Windows instructions will come shortly)
 - A version of the [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) must be installed for djinni to run properly
+- [CMake](https://cmake.org/install/)
+    - Specifically remember to install CMake to use in the Command Line once you've downloaded and installed the CMake app in your applications directory. You can do this using this command in the terminal:
+    ```
+    sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
+    ```
 
 ### Cloning the repo
 You're going to want to clone this repo recursively to get the submodules for djinni and polly (we're using custom forks from the Mobile C++ organization)
