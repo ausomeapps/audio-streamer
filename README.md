@@ -40,7 +40,7 @@ cd scripts && ./build_ios.sh
 - Xcode 8
 - iOS 10.2
 - macOS 10.12
-- A valid "iPhone Developer" code signing identity
+- [A valid "iPhone Developer" code signing identity](http://polly.readthedocs.io/en/latest/toolchains/ios/errors/polly_ios_development_team.html) - this is super important because compiling the iOS and OSX frameworks must be codesigned
 
 Once successfully built the universal `AudioStreamer.framework` and `libdjinni.a` library will be available in the `libs` folder under the target device (iOS or macos). From this point the two can simply be dragged and dropped into a project or added by reference.
 
