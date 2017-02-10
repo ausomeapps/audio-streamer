@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AudioStreamerExample</string>
+    <string name="button_state_play">Play</string>
+    <string name="button_state_pause">Pause</string>
+</resources>
