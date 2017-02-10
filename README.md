@@ -54,6 +54,52 @@ cd scripts && ./build_macos.sh
 ```
 
 ### Android
+
+For Android all you need to do is simply copy or add this repo as a submodule to your existing Android Studio project. There are, however, a couple things to note.
+
+#### Requirements
+- Android Studio 2.3 or later
+- Project must have C++ support enabled (checkmark when you're creating the project)
+- You must enable C++11 instead of the default toolchain
+- Enable exception and rtti
+
+#### Notes
+
+Ensure in your `AndroidManifest.xml` you've added the user permissino for internet like so:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
 ```
-TODO
+
+In the bottom example we made a folder called `deps` and recursively cloned the `audio-streamer` repo into it as a submodule.
+![adding-deps](https://cloud.githubusercontent.com/assets/1275640/22806681/e06f4802-eee8-11e6-8764-ab06039256a1.png)
 ```
+git submodule add https://github.com/mobilecpp/audio-streamer.git audio-streamer
+git submodule update --init --recursive
+```
+
+Go into the `audio-streamer` folder and run the djinni script.
+```
+cd deps/audio-streamer
+cd scripts && ./run_djinni.sh
+```
+
+Next go into your app's `build.gradle` file and add the java source sets from the audio-streamer. If you have placed the audio-streamer folder in a different location than your app's deps folder like above then you should modify the paths below to reflect your project's structure.
+![adding-java-src](https://cloud.githubusercontent.com/assets/1275640/22806682/e06f892a-eee8-11e6-8aa5-88ee1aaf2cc2.png)
+
+Once this is complete you will need to resync gradle. Afterwards, you should see the java classes from the AudioStreamer in your project:
+
+![java-src](https://cloud.githubusercontent.com/assets/1275640/22807082/d8b5ffc8-eeea-11e6-8eb5-e2db8802a096.png)
+
+In the top menu go to Build and click Refresh Linked C++ Projects. You should now see the libraries in the cpp folder and additional `CMakeLists.txt` files in the `External Build Files` section of the project pane.
+![list-of-libs](https://cloud.githubusercontent.com/assets/1275640/22806684/e07b9e68-eee8-11e6-88a3-f910d9104726.png)
+
+![list-of-cmakes](https://cloud.githubusercontent.com/assets/1275640/22806680/e06f228c-eee8-11e6-96da-ecc7184fcc40.png)
+
+Next, we actually load the library into the MainActivity (or another other activity that will actually use this class) by adding the following to the top of the class.
+```java
+static {
+    System.loadLibrary("AudioStreamer");
+}
+```
+
+See the Android sample in the examples folder to see how to use another path structure incase you'd like to keep the audio-streamer folder in a different location.

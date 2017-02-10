@@ -32,6 +32,10 @@ audio_streamer = interface +c {
     # multiple players playing at once)
     static sharedInstance(): audio_streamer;
 
+    # Gets the instance of the proxy class that is internally being used
+    # by the streamer
+    getProxy(): audio_streamer_proxy;
+
     # Sets an instance of the proxy class that is used to implement the
     # platform specific proxy
     setProxy(proxy: audio_streamer_proxy);

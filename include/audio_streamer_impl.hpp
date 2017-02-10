@@ -11,7 +11,6 @@ private:
 
 public:
   AudioStreamerImpl();
-  ~AudioStreamerImpl();
 
   /**
    * A singleton instance of the audio streamer (in most applications you will
@@ -20,6 +19,12 @@ public:
    */
   static std::shared_ptr<AudioStreamer> sharedInstance();
   static std::shared_ptr<AudioStreamerImpl> internalSharedInstance();
+
+  /**
+   * Gets the instance of the proxy class that is internally being used
+   * by the streamer
+   */
+  virtual std::shared_ptr<AudioStreamerProxy> getProxy() override;
 
   /**
    * Sets an instance of the proxy class that is used to implement the
