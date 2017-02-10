@@ -71,6 +71,7 @@ Next go into your app's `build.gradle` file and add the java source sets from th
 ![adding-java-src](https://cloud.githubusercontent.com/assets/1275640/22806682/e06f892a-eee8-11e6-8aa5-88ee1aaf2cc2.png)
 
 Once this is complete you will need to resync gradle. Afterwards, you should see the java classes from the AudioStreamer in your project:
+
 ![java-src](https://cloud.githubusercontent.com/assets/1275640/22807082/d8b5ffc8-eeea-11e6-8eb5-e2db8802a096.png)
 
 In the top menu go to Build and click Refresh Linked C++ Projects. You should now see the libraries in the cpp folder and additional `CMakeLists.txt` files in the `External Build Files` section of the project pane.
