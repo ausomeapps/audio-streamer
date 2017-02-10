@@ -16,6 +16,8 @@ To build the AudioStreamer library for iOS and Android follow the instructions b
     ```
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
     ```
+- [A valid "iPhone Developer" code signing identity](http://polly.readthedocs.io/en/latest/toolchains/ios/errors/polly_ios_development_team.html) - this is super important because compiling the iOS and OSX frameworks must be codesigned.
+- If you've never built a project with Xcode be sure to run an empty project at least once with your codesigning team enabled to prompt the "Enable Developer Mode" window. Once you enable this `xcodebuild` will be able to find your `iPhone Development` certificate.
 
 ### Cloning the repo
 You're going to want to clone this repo recursively to get the submodules for djinni and polly (we're using custom forks from the Mobile C++ organization)
@@ -40,7 +42,6 @@ cd scripts && ./build_ios.sh
 - Xcode 8
 - iOS 10.2
 - macOS 10.12
-- [A valid "iPhone Developer" code signing identity](http://polly.readthedocs.io/en/latest/toolchains/ios/errors/polly_ios_development_team.html) - this is super important because compiling the iOS and OSX frameworks must be codesigned
 
 Once successfully built the universal `AudioStreamer.framework` and `libdjinni.a` library will be available in the `libs` folder under the target device (iOS or macos). From this point the two can simply be dragged and dropped into a project or added by reference.
 
