@@ -62,6 +62,10 @@ git submodule update --init --recursive
 ```
 
 Go into the `audio-streamer` folder and run the djinni script.
+```
+cd deps/audio-streamer
+cd scripts && ./run_djinni.sh
+```
 
 Next go into your app's `build.gradle` file and add the java source sets from the audio-streamer. If you have placed the audio-streamer folder in a different location than your app's deps folder like above then you should modify the paths below to reflect your project's structure.
 ![adding-java-src](https://cloud.githubusercontent.com/assets/1275640/22806682/e06f892a-eee8-11e6-8aa5-88ee1aaf2cc2.png)
