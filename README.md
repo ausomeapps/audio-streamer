@@ -54,7 +54,23 @@ cd scripts && ./build_macos.sh
 ```
 
 ### Android
-For Android all you need to do is simply copy or add this repo as a submodule to your existing Android Studio project. In the bottom example we made a folder called `deps` and recursively cloned the `audio-streamer` repo into it as a submodule.
+
+For Android all you need to do is simply copy or add this repo as a submodule to your existing Android Studio project. There are, however, a couple things to note.
+
+#### Requirements
+- Android Studio 2.3 or later
+- Project must have C++ support enabled (checkmark when you're creating the project)
+- You must enable C++11 instead of the default toolchain
+- Enable exception and rtti
+
+#### Notes
+
+Ensure in your `AndroidManifest.xml` you've added the user permissino for internet like so:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+In the bottom example we made a folder called `deps` and recursively cloned the `audio-streamer` repo into it as a submodule.
 ![adding-deps](https://cloud.githubusercontent.com/assets/1275640/22806681/e06f4802-eee8-11e6-8764-ab06039256a1.png)
 ```
 git submodule add https://github.com/mobilecpp/audio-streamer.git audio-streamer
